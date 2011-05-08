@@ -85,12 +85,7 @@ class cleverFilesystemDiskAdapter extends cleverFilesystemAdapter
   {
     if (!$this->exists($path))
     {
-      if ('' != dirname($path) && $path != dirname($path))
-      {
-        $this->mkdir(dirname($path));
-      }
-
-      mkdir($this->root.DIRECTORY_SEPARATOR.$path);
+      mkdir($this->root.DIRECTORY_SEPARATOR.$path, 0777, true);
     }
   }
 

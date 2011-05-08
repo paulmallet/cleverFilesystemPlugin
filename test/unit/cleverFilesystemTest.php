@@ -15,7 +15,7 @@ $filesystems_configs = array(
 );
 
 // initializes testing framework
-$sf_root_dir = realpath(dirname(__FILE__).'/../../../../');
+$sf_root_dir = realpath(dirname(__FILE__).'/../../');
 require_once($sf_root_dir.'/test/bootstrap/unit.php');
 
 // start tests
@@ -45,6 +45,10 @@ foreach ($filesystems_configs as $type => $filesystem_config)
   # dirs and file creation
   $fs->mkdir('subdir');
   $t->ok($fs->exists('subdir'), 'able to create a directory');
+  
+  $fs->mkdir('othersubdir/subdir/anotherdir', true);
+  $t->ok($fs->exists('othersubdir/subdir'), 'able to create directories recursively');
+
 
   $fs->write('subdir/toto.txt', 'Hello, here is toto');
   $t->ok($fs->exists('subdir/toto.txt'), 'able to create a file in a subdirectory');
@@ -100,7 +104,6 @@ foreach ($filesystems_configs as $type => $filesystem_config)
   # listdir() test
   $t->ok(array('toto.txt') === $fs->listDir('an_other_dir'), 'listDir() lists the items in a directory');
 
-  $fs->mkdir('new');
   $fs->mkdir('new/dir');
   $t->ok(array() === $fs->listDir('new/dir'), 'listDir() returns an empty array when listing an empty dir');
 
