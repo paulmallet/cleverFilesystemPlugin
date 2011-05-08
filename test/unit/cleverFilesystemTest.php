@@ -19,7 +19,7 @@ $sf_root_dir = realpath(dirname(__FILE__).'/../../');
 require_once($sf_root_dir.'/test/bootstrap/unit.php');
 
 // start tests
-$t = new lime_test(34 * count($filesystems_configs), new lime_output_color());
+$t = new lime_test(35 * count($filesystems_configs), new lime_output_color());
 
 exec('rm -Rf '.$root_dir);
 
